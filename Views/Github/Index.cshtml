@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <input type="text" ng-model="keyword" />
+    <button ng-click="getRepos()">Go</button>
+
+    <ul>
+        <li ng-repeat="repo in repos">
+            <div>
+                <img ng-src="{{repo.owner.avatar_url}}" width="16" height="16"/>
+                <span>{{repo.full_name}}</span>
+                <button ng-click="saveRepo(repo.id)">&#9733;</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
