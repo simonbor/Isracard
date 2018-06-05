@@ -1,4 +1,6 @@
-﻿var gitHubRepos = 'https://api.github.com/search/repositories?q=';
+﻿
+var gitHubRepos = 'https://api.github.com/search/repositories?q=';
+var saveRepoUrl = '/Github/Save';
 
 (function () {
 
@@ -34,8 +36,19 @@
                 .then(fillResult, onError);
         }
 
-        $scope.saveRepo = function(repoId) {
-            console.log('the ' + $scope.repos[repoId].full_name + ' saved');
+        $scope.getReposOnEnter = function(keyEvent) {
+            (keyEvent.which === 13) && $scope.getRepos();
+        }
+
+        $scope.saveRepo = function (repoId) {
+            $http({
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                data: { playload: JSON.stringify($scope.repos[repoId]) },
+                url: '/Github/Save'
+            }).then(function (res) {
+                console.log('the ' + res.data + ' saved');
+            }, onError);
         }
 
         $scope.caption = 'Github Search';

@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace IsracardGithubSearch.Controllers
 {
     public class GithubController : Controller
     {
-        // GET: Github
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public string Save(string playload)
+        {
+            var repo = JObject.Parse(playload);
+            var repoId = repo["id"].ToString();
+            Session[repoId] = repo;
+
+            return repoId;
         }
     }
 }
