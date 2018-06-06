@@ -1,0 +1,41 @@
+﻿
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">GitHub Repositories Search</h1>
+        <p class="lead text-muted">
+            Type the repository you would like to search <br />
+            Press the Search button or use the Enter key
+        </p>
+        <p>
+            <div class="input-group input-group-lg">
+                <input type="text" ng-model="keyword" ng-keypress="getReposOnEnter($event)" class="form-control">
+            </div>
+        </p>
+        <p>
+            <a href="#" ng-click="getRepos()" class="btn btn-primary my-2">Search</a>
+        </p>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div ng-repeat="repo in repos" class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img ng-src="{{repo.owner.avatar_url}}" class="card-img-top" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">{{repo.full_name}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" ng-click="saveRepo(repo.id)" class="btn btn-sm btn-outline-secondary">Bookmark</button>
+                            </div>
+                            <small class="text-muted">&#9733; {{repo.stargazers_count}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

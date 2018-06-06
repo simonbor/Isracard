@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/App/Controllers/SearchController.js"></script>
+<script src="~/Scripts/App/Controllers/BookmarksController.js"></script>
+
 <header>
     <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
@@ -23,11 +26,15 @@
     </div>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
+            <a href="/github" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>Home</strong>
+            </a>
+            <a href="/github/search" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="12" cy="13" r="4"></circle></svg>
                 <strong>Search Repos</strong>
             </a>
-            <a href="#" class="navbar-brand d-flex align-items-center">
+            <a href="/github/bookmarks" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="12" cy="13" r="4"></circle></svg>
                 <strong>Bookmarks</strong>
             </a>
@@ -39,47 +46,7 @@
 </header>
 
 <main role="main">
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">GitHub Repositories Search</h1>
-            <p class="lead text-muted">
-                Type the repository you would like to search <br/>
-                Press the Search button or use the Enter key
-            </p>
-            <p>
-                <div class="input-group input-group-lg">
-                    <input type="text" ng-model="keyword" ng-keypress="getReposOnEnter($event)" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-                </div>
-            </p>
-            <p>
-                <a href="#" ng-click="getRepos()" class="btn btn-primary my-2">Search</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-
-                <div ng-repeat="repo in repos" class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img ng-src="{{repo.owner.avatar_url}}" class="card-img-top" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">{{repo.full_name}}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" ng-click="saveRepo(repo.id)" class="btn btn-sm btn-outline-secondary">Bookmark</button>
-                                </div>
-                                <small class="text-muted">&#9733; {{repo.stargazers_count}}</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <div ng-view></div>
 </main>
 
 <footer class="text-muted">
