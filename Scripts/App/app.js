@@ -16,12 +16,12 @@ app.config(function ($routeProvider, $locationProvider, $stateProvider) {
     $routeProvider.when('/github/search', {
         templateUrl: '/Templates/Search.html',
         controller: 'SearchController'
-    });
-
-    $routeProvider.when('/github/bookmarks', {
+    })
+    .when('/github/bookmarks', {
         templateUrl: '/Templates/Bookmarks.html',
         controller: 'BookmarksController'
-    });
+    })
+    .otherwise({ redirectTo: '/github/search' });
 
     $locationProvider.html5Mode(true);
 
